@@ -9,6 +9,7 @@ function Home() {
         appwriteService.getPosts().then((posts) => {
             if (posts) {
                 setPosts(posts.documents)
+                console.log(posts)
             }
         })
     }, [])
@@ -29,11 +30,13 @@ function Home() {
         )
     }
     return (
-        <div className='w-full py-8 '>
+        <div className='relative  mt-10 w-full py-8 '>
             <Container>
-                <div className='flex flex-wrap'>
+                <div className=' flex flex-auto w-10 sm:flex-col min-[643px]:justify-center min-[10px]:flex-col  lg:flex-row md:w-1/3 sm:w-full'>
                     {posts.map((post) => (
-                        <div key={post.$id} className='p-2 w-1/4'>
+                        <div key={post.$id} className=' flex flex-col gap-4  justify-center p-2 w-1/10 md:w-1/3 sm:w-1/2 min-[10px]:w-full'>
+                            <PostCard {...post} />
+                            <PostCard {...post} />
                             <PostCard {...post} />
                         </div>
                     ))}
