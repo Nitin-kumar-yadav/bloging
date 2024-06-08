@@ -71,7 +71,7 @@ export default function PostForm({ post }) {
     }, [watch, slugTransform, setValue]);
 
     return (
-        <form onSubmit={handleSubmit(submit)} className="flex mt-20 flex-wrap">
+        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap mt-20">
             <div className="w-2/3 px-2">
                 <Input
                     label="Title :"
@@ -110,7 +110,7 @@ export default function PostForm({ post }) {
                 <Select
                     options={["active", "inactive"]}
                     label="Status"
-                    className=" mt-10 w-1/4"
+                    className="fixed top-20"
                     {...register("status", { required: true })}
                 />
                 <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
