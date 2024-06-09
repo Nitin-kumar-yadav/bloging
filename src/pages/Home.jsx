@@ -36,8 +36,7 @@ function Home() {
                     {posts.map((post) => (
                         <div key={post.$id} className=' flex flex-col gap-4  justify-center p-2 w-1/10 md:w-1/3 sm:w-1/2 min-[10px]:w-full'>
                             <PostCard {...post} />
-                            <PostCard {...post} />
-                            <PostCard {...post} />
+
                         </div>
                     ))}
                 </div>
