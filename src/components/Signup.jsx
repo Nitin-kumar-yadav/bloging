@@ -6,18 +6,15 @@ import { Button, Input, Logo } from './index.js'
 import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import toast from 'react-hot-toast'
 
 function Signup() {
     const navigate = useNavigate()
     const [error, setError] = useState("")
     const dispatch = useDispatch()
     const { register, handleSubmit } = useForm()
-    const [loading, setLoading] = useState(false)
 
     const create = async (data) => {
         setError("")
-        setLoading(true)
         try {
             const userData = await authService.createAccount(data)
             if (userData) {
@@ -25,18 +22,13 @@ function Signup() {
                 if (userData) dispatch(login(userData));
                 navigate("/")
             }
-            toast.success("Account created successfully")
-            console.log(userData)
-            setLoading(false)
         } catch (error) {
             setError(error.message)
-            toast.error(error.message)
-            setLoading(false)
         }
     }
 
     return (
-        <div className="flex items-center justify-center mt-20">
+        <div className="flex items-center justify-center">
             <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
                 <div className="mb-2 flex justify-center">
                     <span className="inline-block w-full max-w-[100px]">
@@ -50,9 +42,7 @@ function Signup() {
                         to="/login"
                         className="font-medium text-primary transition-all duration-200 hover:underline"
                     >
-                        {
-                            loading ? "Loading..." : "Sign In"
-                        }
+                        Sign In
                     </Link>
                 </p>
                 {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
@@ -74,7 +64,7 @@ function Signup() {
                                 required: true,
                                 validate: {
                                     matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                                        toast.error("password must be at least 8 characters long"),
+                                        "Email address must be a valid address",
                                 }
                             })}
                         />
